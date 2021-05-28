@@ -41,7 +41,7 @@ module.exports = (env, options) => {
 		output: {
 			filename: DEV ? "[name].[hash].bundle.js" : '[name].[chunkhash].bundle.js',
 
-			chunkFilename: '[name].chunk.js', //dynamic import
+			chunkFilename: 'chunk/[name].chunk.js', //dynamic import
 
 			path: path.resolve(__dirname, './dist'),
 
@@ -64,6 +64,17 @@ module.exports = (env, options) => {
 					],
 					exclude: /node_modules/
 				},
+
+				{
+					test: /\.scss$/,
+					use: [
+					  "style-loader",
+					  "css-loader",
+					  "sass-loader"
+					],
+					exclude: /node_modules/
+				},
+
 				{
 					// write image files under 10k to inline or copy image files over 10k
 					test: /\.(jpg|jpeg|gif|png|svg|ico)?$/,
@@ -148,7 +159,7 @@ module.exports = (env, options) => {
 		optimization: {
 
 			splitChunks: {
-				name: "chunk",
+				name: "vendors",
 				chunks: 'all',
 			}, // vendors
 			runtimeChunk: {
