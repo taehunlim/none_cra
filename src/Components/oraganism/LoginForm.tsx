@@ -1,21 +1,17 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
 
-import Formitem from '../molecule/Formitem';
+import Formitem from '../molecule/FormItem';
 import Button from '../atom/Button/Button';
 
-interface LoginFormProps {
+interface FormDataProps {
+	email: string;
+	password: string;
 };
 
-interface FormData {
-	email: string,
-	password: string
-};
+const LoginForm: React.FC = () => {
 
-
-const LoginForm: React.FC<LoginFormProps> = props => {
-
-	const [formData, setFormData] = useState<FormData>({
+	const [formData, setFormData] = useState<FormDataProps>({
 		email: "",
 		password: ""
 	});

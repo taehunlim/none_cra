@@ -2,9 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 interface InputProps {
-	placeholder: string
-	type: string
-	value: any
+	placeholder?: string;
+	type?: string;
+	value: any;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 

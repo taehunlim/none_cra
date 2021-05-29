@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 interface LabelProps {
-	children?: React.ReactNode;
+	children: React.ReactNode;
 }
 
 const Label: React.FC<LabelProps> = props => {

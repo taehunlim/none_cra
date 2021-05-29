@@ -1,10 +1,10 @@
 import React from 'react';
-import Login from '../Components/oraganism/LoginForm';
+import Register from '../Components/oraganism/RegisterForm';
 
 const Home = () => {
 	return (
 		<div>
-			<Login/>
+			<Register/>
 		</div>
 	);
 };

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 interface ButtonProps {
 	children?: React.ReactNode;
-	type: any
+	type?: "reset" | "submit";
 	onClick?: () => void;
 };
 
