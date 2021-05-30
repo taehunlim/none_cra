@@ -2,18 +2,20 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 interface InputProps {
+	id?: string;
 	placeholder?: string;
 	type?: string;
-	value: any;
+	value?: any;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const Input: React.FC<InputProps> = props => {
 
-	const { placeholder, type, value, onChange } = props;
+	const { id, placeholder, type, value, onChange } = props;
 
 	return (
 		<INP
+			id={id}
 			placeholder={placeholder}
 			type={type}
 			value={value}

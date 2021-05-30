@@ -84,7 +84,8 @@ module.exports = (env, options) => {
 							options: {
 								limit: 10000,
 								fallback: 'file-loader',
-								name: 'images/[name].[ext]'
+								name: 'images/[name].[ext]',
+								esModule:false
 							}
 						}
 					]
@@ -99,20 +100,6 @@ module.exports = (env, options) => {
 								limit: 10000,
 								fallback: 'file-loader',
 								name: 'fonts/[name].[ext]'
-							}
-						}
-					]
-				},
-
-				{
-					test: /\.(jpg|jpeg|gif|png|svg|ico)?$/,
-					use: [
-						{
-							loader: 'url-loader',
-							options: {
-								limit: 10000,
-								fallback: 'file-loader',
-								name: 'images/[name].[ext]'
 							}
 						}
 					]

@@ -6,24 +6,27 @@ import Label from '../atom/Label/Label';
 import Input from '../atom/Input/Input';
 
 interface FormItemProps {
+	labelTag: string; 
 	children?: React.ReactNode;
-	placeholder: string;
-	type: string
-	value: any
+	
+	placeholder?: string;
+	type?: string
+	value?: any
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 
 const Formitem: React.FC<FormItemProps> = (props) => {
 
-	const {children, placeholder, type, value, onChange} = props;
+	const {labelTag, children, placeholder, type, value, onChange} = props;
 
 	return (
 		<LabelInput>
-			<Label>
+			<Label htmlFor={labelTag}>
 				{children}
 			</Label>
 			<Input
+				id={labelTag}
 				placeholder={placeholder}
 				type={type}
 				value={value}
@@ -34,6 +37,7 @@ const Formitem: React.FC<FormItemProps> = (props) => {
 };
 
 const LabelInput = styled.div`
+	text-align: left;
 	width:100%;
 	margin: 15px 0;
 `;
