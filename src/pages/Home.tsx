@@ -1,38 +1,23 @@
-import React, {useState} from 'react';
-import Modal from '../Components/oraganism/Modal/Modal';
-import Label from '../Components/atom/Label/Label';
-import Input from '../Components/atom/Input/Input';
-import FormItem from "../Components/molecule/FormItem";
+import React from 'react';
+import Accordion from '../Components/oraganisms/Accordion/Accordion';
 
 const Home = () => {
 
-	const [modal, setModal] = useState<boolean>(false);
+	const lists = [
+		{
+			title: "first title", content: "first content"
+		},
+		{
+			title: "second title", content: "second content"
+		}
+	]
 
 	return (
 		<div>
-			<button
-				onClick={() => setModal(true)}
-			>
-
-			</button>
-			<Modal
-				open={modal}
-				close={() => setModal(!modal)}
-				modalTitle="로그인"
-			>
-				<FormItem
-					labelTag="email"
-					placeholder="email"
-				>
-					Email
-				</FormItem>
-				<FormItem
-					labelTag="password"
-					placeholder="password"
-				>
-					Password
-				</FormItem>
-			</Modal>
+			<Accordion
+			
+				lists={lists}
+			/>
 		</div>
 	);
 };

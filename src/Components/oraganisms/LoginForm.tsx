@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
 
-import Formitem from '../molecule/FormItem';
-import Button from '../atom/Button/Button';
+import Formitem from '../molecules/FormItem';
+import Button from '../atoms/Button/Button';
 
 interface FormDataProps {
 	email: string;
@@ -31,6 +31,7 @@ const LoginForm: React.FC = () => {
 			onSubmit={handleSubmit}
 		>
 			<Formitem
+				labelTag="userEmail"
 				type="email"
 				placeholder="이메일"
 				value={email}
@@ -40,6 +41,7 @@ const LoginForm: React.FC = () => {
 			</Formitem>
 
 			<Formitem
+				labelTag="userPassword"
 				type="password"
 				placeholder="비밀번호"
 				value={password}
@@ -58,12 +60,7 @@ const LoginForm: React.FC = () => {
 };
 
 const Login = styled.form`
-	width: 450px;
-
-
-	@media (max-width: 768px) {
-		width: 100%
-	}
+	width: 100%;
 `;
 
 export default LoginForm;

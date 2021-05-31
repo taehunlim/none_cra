@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
 
-import FormItem from '../molecule/FormItem';
-import Button from '../atom/Button/Button';
+import FormItem from '../molecules/FormItem';
+import Button from '../atoms/Button/Button';
 
 interface FormDataProps {
     name: string;
@@ -35,6 +35,7 @@ const RegisterForm: React.FC = () => {
     return (
         <Register onSubmit={handleSubmit}>
             <FormItem
+				labelTag="newName"
                 type="name"
                 placeholder="이름"
                 value={name}
@@ -44,6 +45,7 @@ const RegisterForm: React.FC = () => {
             </FormItem>
 
             <FormItem
+				labelTag="newEmail"
                 type="email"
                 placeholder="이메일"
                 value={email}
@@ -53,6 +55,7 @@ const RegisterForm: React.FC = () => {
             </FormItem>
 
             <FormItem
+				labelTag="newPassword"
                 type="password"
                 placeholder="비밀번호"
                 value={password}
@@ -62,6 +65,7 @@ const RegisterForm: React.FC = () => {
             </FormItem>
 
             <FormItem
+				labelTag="newConfirmPasword"
                 type="password"
                 placeholder="비밀번호 확인"
                 value={confirmPassword}

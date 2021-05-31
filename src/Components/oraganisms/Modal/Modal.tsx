@@ -42,7 +42,7 @@ const CloseButton = styled.img`
     position: absolute;
     right: 15px;
     top: 15px;
-    width: 20px;
+    width: 18px;
     heigh: auto;
 `;
 
@@ -102,7 +102,7 @@ const PopUpWrapper = styled.div`
 
 
 const PopUpTitle = styled.div`
-    padding: 40px 20px;
+    padding: 30px 20px;
     font-size: 16px;
     font-weight: bold;
     line-height: 1;

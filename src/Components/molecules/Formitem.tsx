@@ -2,8 +2,8 @@ import React, { Children } from 'react';
 import styled from '@emotion/styled';
 
 //atom;
-import Label from '../atom/Label/Label';
-import Input from '../atom/Input/Input';
+import Label from '../atoms/Label/Label';
+import Input from '../atoms/Input/Input';
 
 interface FormItemProps {
 	labelTag: string; 
