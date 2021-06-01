@@ -7,7 +7,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 const dotenv = require('dotenv');
 
@@ -39,9 +40,9 @@ module.exports = (env, options) => {
 		},
 
 		output: {
-			filename: DEV ? "[name].[hash].bundle.js" : '[name].[chunkhash].bundle.js',
+			filename: DEV ? "js/[name].[hash].bundle.js" : 'js/[name].[chunkhash].bundle.js',
 
-			chunkFilename: 'chunk/[name].chunk.js', //dynamic import
+			chunkFilename: 'js/[name].chunk.js', //dynamic import
 
 			path: path.resolve(__dirname, './dist'),
 
@@ -68,22 +69,20 @@ module.exports = (env, options) => {
 				{
 					test: /\.scss$/,
 					use: [
-					  "style-loader",
-					  "css-loader",
-					  "sass-loader"
+						DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+						"css-loader",
+						"sass-loader",						
+					
 					],
 					exclude: /node_modules/
 				},
 
 				{
-					// write image files under 10k to inline or copy image files over 10k
 					test: /\.(jpg|jpeg|gif|png|svg|ico)?$/,
 					use: [
 						{
-							loader: 'url-loader',
+							loader: 'file-loader',
 							options: {
-								limit: 10000,
-								fallback: 'file-loader',
 								name: 'images/[name].[ext]',
 								esModule:false
 							}
@@ -112,9 +111,11 @@ module.exports = (env, options) => {
 			//------------------------common
 			new HtmlwebPackPlugin({
 				template: './public/index.html',
-				templateParameters: {
-					env: DEV ? '(개발중)' : ''
-				},
+
+				minify:
+					DEV 
+					? false 
+					: { collapseWhitespace: true, removeComments: true },
 
 				showErrors: true
 			}),
@@ -135,7 +136,18 @@ module.exports = (env, options) => {
 
 			//-------------------------prod
 
-			new CleanWebpackPlugin()
+			new CleanWebpackPlugin(),
+			new MiniCssExtractPlugin({
+				filename: 'css/[name].[contenthash].css'
+			}),
+			// new CopyPlugin({
+			// 	patterns: [
+			// 		{
+			// 			from: "./node_modules/axios/dist/axios.min.js",
+			// 			to: "js/axios.min.js"
+			// 		}
+			// 	]
+			// })
 
 		],
 	
@@ -164,6 +176,9 @@ module.exports = (env, options) => {
 			]
 		},
 
+		// externals: {
+		// 	axios: "axios"
+		// }
 	}
 
 }
