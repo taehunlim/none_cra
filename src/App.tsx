@@ -8,7 +8,7 @@ import "./styles.scss"
 import {Home} from './pages';
 
 const App:React.FC = () => {
-
+//주석이지롱
 	const swrConfig = {
 		// useSWR에 url만 적어도 axios의 response.data 값이 return
 		fetcher: (url: string, params: object) => 

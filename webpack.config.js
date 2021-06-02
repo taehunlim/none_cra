@@ -27,7 +27,7 @@ module.exports = (env, options) => {
 	return {
 		mode: DEV ? "development" : "production",
 
-		devtool: DEV ? "inline-source-map" : "source-map",
+		devtool: DEV ? "inline-source-map" : "cheap-module-source-map",
 
 		devServer: {
 			contentBase: "./dist",
@@ -111,11 +111,17 @@ module.exports = (env, options) => {
 			//------------------------common
 			new HtmlwebPackPlugin({
 				template: './public/index.html',
-
-				minify:
-					DEV 
-					? false 
-					: { collapseWhitespace: true, removeComments: true },
+				templateParameters: {
+					env: DEV ? '(개발)' : '',
+				},
+				minify: DEV ? false : {
+					collapseWhitespace: true,
+					removeComments: true,
+					removeRedundantAttributes: true,
+					removeScriptTypeAttributes: true,
+					removeStyleLinkTypeAttributes: true,
+					useShortDoctype: true
+				  },
 
 				showErrors: true
 			}),
