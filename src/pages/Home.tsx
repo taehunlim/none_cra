@@ -1,23 +1,13 @@
 import React from 'react';
-import Accordion from '../Components/oraganisms/Accordion/Accordion';
+import Radio from '../Components/atoms/Button/RadioButton';
 
 const Home = () => {
 
-	const lists = [
-		{
-			title: "first title", content: "first content"
-		},
-		{
-			title: "second title", content: "second content"
-		}
-	]
-
 	return (
 		<div>
-			<Accordion
-			
-				lists={lists}
-			/>
+			<Radio name="tes"/>
+			<Radio name="tes"/>
+			<Radio name="tes"/>
 		</div>
 	);
 };
