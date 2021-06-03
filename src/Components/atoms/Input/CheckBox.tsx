@@ -45,7 +45,7 @@ const Check = styled.input`
 
 	&:checked {
 		background-color: cadetblue;
-		&::after {
+		::after {
 			font-family: "Font Awesome 5 Free";
 			content: "\f00c";
 			font-weight: 700;
