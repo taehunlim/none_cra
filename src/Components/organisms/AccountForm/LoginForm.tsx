@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
 
-import Formitem from '../molecules/FormItem';
-import Button from '../atoms/Button/Button';
+import Formitem from '../../molecules/FormItem';
+import Button from '../../atoms/Button/Button';
 
 interface FormDataProps {
 	email: string;
