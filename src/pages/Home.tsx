@@ -1,13 +1,13 @@
 import React from 'react';
-import Radio from '../Components/atoms/Button/RadioButton';
+import Radio from '../Components/atoms/Input/Radio';
+import CheckBox from '../Components/atoms/Input/CheckBox';
 
 const Home = () => {
 
 	return (
 		<div>
 			<Radio name="tes"/>
-			<Radio name="tes"/>
-			<Radio name="tes"/>
+			<CheckBox/>
 		</div>
 	);
 };

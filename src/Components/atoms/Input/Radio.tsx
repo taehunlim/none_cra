@@ -8,12 +8,12 @@ interface RadioButtonProps {
 	checked?: boolean;
 }
 
-const RadioButton: React.FC<RadioButtonProps> = props => {
+const Radio: React.FC<RadioButtonProps> = props => {
 
 	const {id, name, value, checked} = props;
 
 	return (
-		<Radio>
+		<RadioBtn>
 			<RadioCheck
 				id={id}
 				type="radio"
@@ -21,17 +21,20 @@ const RadioButton: React.FC<RadioButtonProps> = props => {
 				value={value}
 				checked={checked}
 			/>
-		</Radio>
+		</RadioBtn>
 	);
 };
 
 
 
-const Radio = styled.div`
-	display: inline-flex;
+const RadioBtn = styled.div`
+	display: flex;
 	border: 1px solid;
 	border-radius: 100%;
 	margin: 5px;
+
+	width: 16px;
+	heigth: 16px;
 `;
 
 const RadioCheck = styled.input`
@@ -42,12 +45,10 @@ const RadioCheck = styled.input`
 	height: 0.5rem;
 
 	border-radius: 100%;
-	// border: 1px solid black;
 
 	&:checked {
 		background-color: red;
-		color: black;
 	}
 `;
 
-export default RadioButton;
+export default Radio;
