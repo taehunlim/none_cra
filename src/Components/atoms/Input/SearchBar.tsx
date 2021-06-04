@@ -3,17 +3,18 @@ import styled from '@emotion/styled';
 
 interface SearchProps {
 	id?: string;
+	style?: React.CSSProperties;
 	placeholder?: string;
 	value?: any;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Search: React.FC<SearchProps> = props => {
+const SearchBar: React.FC<SearchProps> = props => {
 
 	const {id, placeholder, value, onChange} = props;
 
 	return (
-		<SearchBar
+		<Search
 			id={id}
 			type="search"
 			placeholder={placeholder}
@@ -23,7 +24,7 @@ const Search: React.FC<SearchProps> = props => {
 	);
 };
 
-const SearchBar = styled.input`
+const Search = styled.input`
 	font-size: 15px;
 	padding: 8px;
 	width: 100%;
@@ -58,4 +59,4 @@ const SearchBar = styled.input`
 	}
 `;
 
-export default Search;
+export default SearchBar;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 interface ButtonProps {
+	style?: React.CSSProperties;
 	children?: React.ReactNode;
 	type?: "reset" | "submit";
 	onClick?: () => void;
@@ -9,10 +10,11 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = props => {
 
-	const {children, type, onClick} = props;
+	const {style, children, type, onClick} = props;
 
 	return (
 		<BTN
+			style={style}
 			type={type}
 			onClick={onClick}
 		>

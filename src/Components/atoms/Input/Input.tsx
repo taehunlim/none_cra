@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 interface InputProps {
 	id?: string;
+	style?: React.CSSProperties;
 	placeholder?: string;
 	type?: string;
 	value?: any;
@@ -11,11 +12,12 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = props => {
 
-	const { id, placeholder, type, value, onChange } = props;
+	const { id, style, placeholder, type, value, onChange } = props;
 
 	return (
 		<INP
 			id={id}
+			style={style}
 			placeholder={placeholder}
 			type={type}
 			value={value}
