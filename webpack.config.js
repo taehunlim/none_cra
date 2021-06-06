@@ -23,6 +23,9 @@ module.exports = (env, options) => {
 		dotenv.config({ path: "./env/.env" })
 	}
 
+	// const copyMap = {
+	// 	'axios': DEV ? './node_modules/axios/dist/axios.js' : './node_modules/axios/dist/axios.min.js'
+	// }
 
 	return {
 		mode: DEV ? "development" : "production",
@@ -149,7 +152,7 @@ module.exports = (env, options) => {
 			// new CopyPlugin({
 			// 	patterns: [
 			// 		{
-			// 			from: "./node_modules/axios/dist/axios.min.js",
+			// 			from: copyMap['axios'],
 			// 			to: "js/axios.min.js"
 			// 		}
 			// 	]

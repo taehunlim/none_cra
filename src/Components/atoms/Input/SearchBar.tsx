@@ -11,11 +11,12 @@ interface SearchProps {
 
 const SearchBar: React.FC<SearchProps> = props => {
 
-	const {id, placeholder, value, onChange} = props;
+	const {id, style, placeholder, value, onChange} = props;
 
 	return (
 		<Search
 			id={id}
+			style={style}
 			type="search"
 			placeholder={placeholder}
 			value={value}
@@ -27,7 +28,6 @@ const SearchBar: React.FC<SearchProps> = props => {
 const Search = styled.input`
 	font-size: 15px;
 	padding: 8px;
-	width: 100%;
 	border-radius: 5px;
 
 	&[type=search] {

@@ -20,6 +20,9 @@ const SearchForm: React.FC<SearchBarProps> = props => {
 	return (
 		<Search onSubmit={onSubmit}>
 			<SearchBar
+				style={{
+					width: "70%"
+				}}
 				id={id}
 				placeholder={placeholder}
 				value={value}

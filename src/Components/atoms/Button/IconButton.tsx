@@ -8,7 +8,7 @@ interface ButtonProps {
 	onClick?: () => void;
 };
 
-const Button: React.FC<ButtonProps> = props => {
+const IconButton: React.FC<ButtonProps> = props => {
 
 	const {style, children, type, onClick} = props;
 
@@ -24,13 +24,13 @@ const Button: React.FC<ButtonProps> = props => {
 };
 
 const BTN = styled.button`
+	padding: 0;
 	font-size: 16px;
+	width: 25px;
 	height: auto;
 	background-color: #fff;
-	border-radius: 5px;
-	padding: 15px 20px;
-	flex-direction: column;
+	border: none;
 	align-items: center;
 `
 
-export default Button;
+export default IconButton;
