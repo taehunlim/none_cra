@@ -38,7 +38,7 @@ module.exports = (env, options) => {
 		},
 
 		entry: {
-			main: "./src/index.tsx",
+			main: ['babel-polyfill', "./src/index.tsx"],
 
 		},
 

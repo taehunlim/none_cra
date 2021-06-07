@@ -1,33 +1,51 @@
-import React, {useState} from 'react';
-import Tabs from '../components/organisms/Tabs/Tabs';
-import {SearchForm as Search} from '../components/molecules/_index';
+import React, { useState } from 'react';
+import { atom, useRecoilState, useRecoilCallback, useGotoRecoilSnapshot} from 'recoil';
 
+const counter = atom({
+	key: "counter",
+	default: 0
+});
 
 const Home = () => {
 
-	const [formData, setFormData] = useState({
-		keyword: ""
+	const [count, setCount] = useRecoilState(counter);
+
+	const [snapshotList, setSnapshotList] = useState([]);
+	const updateSnapshot = useRecoilCallback(({ snapshot }) => async () => {
+		const release = snapshot.retain();
+		try {
+			await setSnapshotList(prevList => [...prevList, snapshot]);
+		} finally {
+			release();
+		}
+
 	});
 
-	const handleChange = (text: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData({...formData, [text]: e.target.value})
-	}; 
-
-	console.log(formData)
-
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		console.log(formData)
-	}
+	const gotoSnapshot = useGotoRecoilSnapshot();
 
 	return (
-		<Search
-			onSubmit={handleSubmit}
-			onChange={handleChange("keyword")}
-			value={formData.keyword}
-		>
-			검색
-		</Search>
+
+		<div>
+			<p>Count: {count}</p>
+			<br />
+			<button onClick={() => setCount(count + 1)}>
+				카운트 증가
+			</button>
+
+			<p>{snapshotList.length}</p>
+			<button onClick={updateSnapshot}> 현재 상태 스냅샷</button>
+
+			<ul>
+				{snapshotList.map((snapshot, i) => (
+					<li key={i}>
+						<button onClick={() => gotoSnapshot(snapshot)}>
+							Snapshot store #{i + 1}
+						</button>
+					</li>
+				))}
+			</ul>
+		</div>
+
 	);
 };
 
