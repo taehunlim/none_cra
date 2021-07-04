@@ -6,7 +6,7 @@ import { RecoilRoot } from 'recoil';
 
 import "./styles.scss"
 
-import { Home } from './pages';
+import { Home, CustomHookTest } from './pages';
 
 const App: React.FC = () => {
 	const swrConfig = {
@@ -24,7 +24,8 @@ const App: React.FC = () => {
 				<BrowserRouter>
 					<Switch>
 						<Route path="/" exact render={props => <Home {...props} />} />
-						<Redirect to="/" />
+						<Route path="/test" exact render={props => <CustomHookTest {...props} />} />
+						<Redirect to="/"/>
 					</Switch>
 				</BrowserRouter>
 			</SWRConfig>
