@@ -1,18 +1,14 @@
 import React from 'react';
-import { useLocalStorage } from '../Components/organisms/CustomHook/useLocalStorage'
+import { useWindowSize } from '../Components/organisms/CustomHook/useWindowSize'
 
 const CustomHookTest: React.FC = () => {
 
-    const [name, setName] = useLocalStorage<string>("name", "LimTae");
+    const size = useWindowSize();
+
     return (
-        <div>
-           <input
-                type="text"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-        </div>
+    <div>
+        {size.width}px / {size.height}px
+    </div>
     );
 };
 
