@@ -1,17 +1,17 @@
 import React from 'react';
-import { useConfirm } from '../Components/organisms/CustomHook/useConfirm'
+import { useLocalStorage } from '../Components/organisms/CustomHook/useLocalStorage'
 
 const CustomHookTest: React.FC = () => {
 
-    const deleteWorld = () => console.log("Deleting the word")
-    const abort = () => console.log("Aborted")
-    const confirmDelete = () => useConfirm("Are you sure", deleteWorld, abort)
-
+    const [name, setName] = useLocalStorage<string>("name", "LimTae");
     return (
         <div>
-
-            <button onClick={confirmDelete}>Delete the World</button>
-
+           <input
+                type="text"
+                placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
         </div>
     );
 };
