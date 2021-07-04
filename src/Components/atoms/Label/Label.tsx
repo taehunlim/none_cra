@@ -6,9 +6,7 @@ interface LabelProps {
 	children: React.ReactNode;
 }
 
-const Label: React.FC<LabelProps> = props => {
-	
-	const {htmlFor, children} = props
+const Label: React.FC<LabelProps> = ({htmlFor, children}) => {
 
 	return (
 		<LABEL htmlFor={htmlFor}>

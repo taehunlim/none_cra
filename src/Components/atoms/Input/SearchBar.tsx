@@ -9,9 +9,7 @@ interface SearchProps {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchBar: React.FC<SearchProps> = props => {
-
-	const {id, style, placeholder, value, onChange} = props;
+const SearchBar: React.FC<SearchProps> = ({id, style, placeholder, value, onChange}) => {
 
 	return (
 		<Search

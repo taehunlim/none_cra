@@ -16,9 +16,7 @@ interface FormItemProps {
 }
 
 
-const Formitem: React.FC<FormItemProps> = (props) => {
-
-	const {labelTag, children, placeholder, type, value, onChange} = props;
+const Formitem: React.FC<FormItemProps> = ({labelTag, children, placeholder, type, value, onChange}) => {
 
 	return (
 		<LabelInput>

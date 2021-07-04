@@ -14,7 +14,7 @@ const CustomHookTest: React.FC = () => {
         </div>
 
             {modal ? (
-                <Modal open={modal} close={() => setModal(!modal)} />
+                <Modal open={modal} close={() => false} />
             ) : (
                 ""
             )}

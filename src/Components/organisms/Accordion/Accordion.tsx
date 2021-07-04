@@ -11,9 +11,7 @@ interface ListType {
 	content: string;
 }
 
-const Accordion: React.FC<AccordionProps> = props => {
-
-	const { lists, titleName } = props;
+const Accordion: React.FC<AccordionProps> = ({lists, titleName}) => {
 
 	const [activeIndex, setActiveIndex] = useState<number>(null)
 

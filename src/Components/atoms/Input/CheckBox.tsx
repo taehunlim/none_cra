@@ -8,10 +8,8 @@ interface CheckBoxProps {
 	checked?: boolean;
 }
 
-const CheckBox: React.FC<CheckBoxProps> = props => {
-
-	const { id, name, value, checked } = props;
-
+const CheckBox: React.FC<CheckBoxProps> = ({ id, name, value, checked }) => {
+	
 	return (
 		<Box>
 			<Check

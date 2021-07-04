@@ -10,9 +10,7 @@ interface InputProps {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Input: React.FC<InputProps> = props => {
-
-	const { id, style, placeholder, type, value, onChange } = props;
+const Input: React.FC<InputProps> = ({ id, style, placeholder, type, value, onChange }) => {
 
 	return (
 		<INP

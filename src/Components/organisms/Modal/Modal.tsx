@@ -6,17 +6,14 @@ import {useScrollRock} from '../CustomHook/useScrollRock';
 
 interface ModalProps {
     open: boolean;
-    close?: any;
     modalTitle?: string;
     children?: React.ReactNode
 }
 
-const Modal: React.FC<ModalProps> = props => {
-
-    const { open, close, modalTitle, children } = props;
+const Modal: React.FC<ModalProps> = ({open, modalTitle, children}) => {
 
     useScrollRock();
-    
+
     return (
         <PopUp
             className={`${open ? "active" : ""}`}
@@ -25,7 +22,6 @@ const Modal: React.FC<ModalProps> = props => {
                 <PopUpWrapper>
                     <CloseButton 
                         src={require('../../../assets/images/close.png')}
-                        onClick={close}
                     />
                     <PopUpTitle>
                         {modalTitle}
@@ -48,6 +44,7 @@ const CloseButton = styled.img`
     top: 15px;
     width: 18px;
     heigh: auto;
+    cursor: pointer;
 `;
 
 const modalBgKeyframe = keyframes`

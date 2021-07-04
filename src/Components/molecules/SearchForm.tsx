@@ -1,8 +1,8 @@
 import React, { Children } from 'react';
 import styled from '@emotion/styled';
 
-import {SearchBar} from '../atoms/Input/_index'
-import {Button} from '../atoms/Button/_index';
+import SearchBar from '../atoms/Input/SearchBar'
+import Button from '../atoms/Button/Button';
 
 interface SearchBarProps {
 	id?: string;
@@ -13,9 +13,7 @@ interface SearchBarProps {
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const SearchForm: React.FC<SearchBarProps> = props => {
-
-	const {id, children, placeholder, value, onChange, onSubmit} = props;
+const SearchForm: React.FC<SearchBarProps> = ({id, children, placeholder, value, onChange, onSubmit}) => {
 
 	return (
 		<Search onSubmit={onSubmit}>

@@ -8,9 +8,7 @@ interface ButtonProps {
 	onClick?: () => void;
 };
 
-const Button: React.FC<ButtonProps> = props => {
-
-	const {style, children, type, onClick} = props;
+const Button: React.FC<ButtonProps> = ({style, children, type, onClick}) => {
 
 	return (
 		<BTN
