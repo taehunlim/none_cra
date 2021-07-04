@@ -8,9 +8,7 @@ interface RadioButtonProps {
 	checked?: boolean;
 }
 
-const Radio: React.FC<RadioButtonProps> = props => {
-
-	const {id, name, value, checked} = props;
+const Radio: React.FC<RadioButtonProps> = ({id, name, value, checked}) => {
 
 	return (
 		<RadioBtn>

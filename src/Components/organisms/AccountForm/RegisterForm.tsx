@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
 
-import FormItem from '../../molecules/FormItem';
+import FormItem from '../../molecules/LabelInput';
 import Button from '../../atoms/Button/Button';
 
 interface FormDataProps {

@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
-import Modal from '../Components/organisms/Modal/Modal';
+import {useChecks} from '../Components/organisms/CustomHook/useChecks';
 
 const CustomHookTest: React.FC = () => {
-    const [modal, setModal] = useState(false);
+    const labels = ['check 1', 'check 2', 'check 3']
+
+    const [isAllChecked, renderChecks] = useChecks(labels)
+    
     return (
-        <div onClick={() => setModal(true)}>
-
-
-            <div
-                style={{ height: "2000px" }}
-            >
-                modal click
-        </div>
-
-            {modal ? (
-                <Modal open={modal} close={() => false} />
-            ) : (
-                ""
-            )}
-
-        </div>
+        <div>
+        {renderChecks()}
+        <p>
+          <button disabled={!isAllChecked}>다음</button>
+        </p>
+      </div>
     );
 };
 

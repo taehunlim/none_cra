@@ -6,9 +6,11 @@ interface CheckBoxProps {
 	name?: string;
 	value?: any;
 	checked?: boolean;
+	defaultChecked?: boolean;
+	onClick?: () => void;
 }
 
-const CheckBox: React.FC<CheckBoxProps> = ({ id, name, value, checked }) => {
+const CheckBox: React.FC<CheckBoxProps> = ({ id, name, value, checked, onClick }) => {
 	
 	return (
 		<Box>
@@ -18,6 +20,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({ id, name, value, checked }) => {
 				name={name}
 				value={value}
 				checked={checked}
+				onClick={onClick}
 			/>
 		</Box>
 	);
