@@ -1,14 +1,25 @@
-import React from 'react';
-import { useWindowSize } from '../Components/organisms/CustomHook/useWindowSize'
+import React, { useState } from 'react';
+import Modal from '../Components/organisms/Modal/Modal';
 
 const CustomHookTest: React.FC = () => {
-
-    const size = useWindowSize();
-
+    const [modal, setModal] = useState(false);
     return (
-    <div>
-        {size.width}px / {size.height}px
-    </div>
+        <div onClick={() => setModal(true)}>
+
+
+            <div
+                style={{ height: "2000px" }}
+            >
+                modal click
+        </div>
+
+            {modal ? (
+                <Modal open={modal} close={() => setModal(!modal)} />
+            ) : (
+                ""
+            )}
+
+        </div>
     );
 };
 
