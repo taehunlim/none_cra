@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { usePreventLeave } from '../Components/organisms/CustomHook/usePreventLeave';
+import { useToggle } from '../Components/organisms/CustomHook/useToggle';
 
 const CustomHookTest: React.FC = () => {
 
-  const { enablePrevent, disablePrevent } = usePreventLeave();
+  const [isChanged, setIsChanged] = useToggle();
 
   return (
     <div>
-      <button onClick={enablePrevent}>Protect</button>
-      <button onClick={disablePrevent}>Unprotect</button>
+      <button
+        onClick={setIsChanged}
+      >
+        {isChanged ? "basic" : "new"}
+      </button>
     </div>
   );
 };
