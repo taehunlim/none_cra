@@ -61,9 +61,10 @@ module.exports = (env, options) => {
 						'babel-loader',
 						{
 							loader: 'ts-loader',
-							options: {
-								transpileOnly: true,
-							},
+							// options: {
+							// 	transpileOnly: true,
+							// 	configFile: './tsconfig.json',
+							// },
 						},
 					],
 					exclude: /node_modules/

@@ -40,3 +40,17 @@ ul {
 
   list-style: outside none none;
 }
+
+.image-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.5rem;
+
+  img {
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+
