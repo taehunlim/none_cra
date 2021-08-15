@@ -1,6 +1,4 @@
 import React from 'react';
-
-/** @jsx jsx */
 import { Global, css } from '@emotion/react';
 
 const styles = css`
@@ -11,14 +9,19 @@ const styles = css`
     }
 
     html,
-        body {
+    body {
         height: 100%;
     }
 
     body {
         margin: 0;
-
+        position: relative
         background-color: white;
+        transition: background-color 0.3s ease;
+        &.dark-mode {
+            background-color: #232323;
+            color: #dfdfdf;
+        }
     }
 
     p:last-child {

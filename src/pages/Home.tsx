@@ -3,8 +3,11 @@ import { useRootState, useRootDispatch } from '../store';
 import { increment, decrement } from '../actions/countAction';
 import styled from '@emotion/styled';
 
+import Layout from '../Components/Layout';
+
 
 const Home: React.FC = () => {
+
 
     const state = useRootState();
     const dispatch = useRootDispatch();
@@ -20,31 +23,25 @@ const Home: React.FC = () => {
     }
 
     return (
-        <div>
+        <Layout>
             <p>
                 {state.count.number}
             </p>
 
-            <Button
+            <button
                 onClick={handleIncrement}
             >
                 +
-            </Button>
+            </button>
 
             <button
                 onClick={handleDecrement}
             >
                 -
             </button>
-        </div>
+        </Layout>
     );
 };
-
-const Button = styled.button`
-
-
-${ (props => props.theme.bg.green)}
-`;
 
 
 export default Home;

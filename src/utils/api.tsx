@@ -27,7 +27,7 @@ api.interceptors.response.use(
 
 					auth.setToken("data.access_token");
 					auth.setRefreshToken("data.refresh_token");
-					api.defaults.headers.common['AAuthorizationutho'] = "data.access_token";
+					api.defaults.headers.common['Authorizationutho'] = "data.access_token";
 					return api.request(error.config)
 				}
 

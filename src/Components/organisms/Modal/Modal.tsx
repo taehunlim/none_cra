@@ -76,12 +76,12 @@ const PopUp = styled.div`
 
 const modalKeyframe = keyframes`
     from {
-    opacity: 0;
-    margin-bottom: -50px;
+        opacity: 0;
+        margin-bottom: -50px;
     }
     to {
-    opacity: 1;
-    margin-top: 0;
+        opacity: 1;
+        margin-top: 0;
     }
 `;
 
