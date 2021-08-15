@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { SWRConfig } from 'swr';
 import { api } from './utils/api';
-import { RecoilRoot } from 'recoil';
+import { Store } from './store';
 
 import "./styles.scss"
 
 import { Home, CustomHookTest } from './pages';
+import { useState } from 'react';
 
 const App: React.FC = () => {
 	const swrConfig = {
@@ -19,17 +20,30 @@ const App: React.FC = () => {
 	};
 
 	return (
-		<RecoilRoot>
+		<Store>
 			<SWRConfig value={swrConfig}>
 				<BrowserRouter>
 					<Switch>
 						<Route path="/" exact render={props => <Home {...props} />} />
 						<Route path="/test" exact render={props => <CustomHookTest {...props} />} />
-						<Redirect to="/"/>
+
+						<Redirect to="/" />
 					</Switch>
 				</BrowserRouter>
 			</SWRConfig>
-		</RecoilRoot>
+		</Store>
+
+		// <RecoilRoot>
+		// 	<SWRConfig value={swrConfig}>
+		// 		<BrowserRouter>
+		// 			<Switch>
+		// 				<Route path="/" exact render={props => <Home {...props} />} />
+		// 				<Route path="/test" exact render={props => <CustomHookTest {...props} />} />
+		// 				<Redirect to="/"/>
+		// 			</Switch>
+		// 		</BrowserRouter>
+		// 	</SWRConfig>
+		// </RecoilRoot>
 	);
 };
 

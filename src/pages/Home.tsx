@@ -1,52 +1,41 @@
-import React, { useState } from 'react';
-import { atom, useRecoilState, useRecoilCallback, useGotoRecoilSnapshot} from 'recoil';
+import React from 'react';
+import { useRootState, useRootDispatch } from '../store';
+import { increment, decrement } from '../actions/countAction';
 
-const counter = atom({
-	key: "counter",
-	default: 0
-});
+const Home: React.FC = () => {
 
-const Home = () => {
+    const state = useRootState();
+    const dispatch = useRootDispatch();
 
-	const [count, setCount] = useRecoilState(counter);
+    const handleIncrement = e => {
+        e.preventDefault();
+        dispatch(increment());
+    }
 
-	const [snapshotList, setSnapshotList] = useState([]);
-	const updateSnapshot = useRecoilCallback(({ snapshot }) => async () => {
-		const release = snapshot.retain();
-		try {
-			await setSnapshotList(prevList => [...prevList, snapshot]);
-		} finally {
-			release();
-		}
+    const handleDecrement = e => {
+        e.preventDefault();
+        dispatch(decrement());
+    }
 
-	});
+    return (
+        <div>
+            <p>
+                {state.count.number}
+            </p>
 
-	const gotoSnapshot = useGotoRecoilSnapshot();
+            <button
+                onClick={handleIncrement}
+            >
+                +
+            </button>
 
-	return (
-
-		<div>
-			<p>Count: {count}</p>
-			<br />
-			<button onClick={() => setCount(count + 1)}>
-				카운트 증가
-			</button>
-
-			<p>{snapshotList.length}</p>
-			<button onClick={updateSnapshot}> 현재 상태 스냅샷</button>
-
-			<ul>
-				{snapshotList.map((snapshot, i) => (
-					<li key={i}>
-						<button onClick={() => gotoSnapshot(snapshot)}>
-							Snapshot store #{i + 1}
-						</button>
-					</li>
-				))}
-			</ul>
-		</div>
-
-	);
+            <button
+                onClick={handleDecrement}
+            >
+                -
+            </button>
+        </div>
+    );
 };
 
 export default Home;
