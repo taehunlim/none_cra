@@ -1,13 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { SWRConfig } from 'swr';
+/** @jsx jsx */
+import { ThemeProvider } from '@emotion/react';
+
 import { api } from './utils/api';
 import { Store } from './store';
-
-import "./styles.scss"
+import GlobalStyles from './assets/styles/GlobalStyles';
+import theme from './assets/styles/theme';
 
 import { Home, CustomHookTest } from './pages';
-import { useState } from 'react';
 
 const App: React.FC = () => {
 	const swrConfig = {
@@ -23,12 +25,15 @@ const App: React.FC = () => {
 		<Store>
 			<SWRConfig value={swrConfig}>
 				<BrowserRouter>
-					<Switch>
-						<Route path="/" exact render={props => <Home {...props} />} />
-						<Route path="/test" exact render={props => <CustomHookTest {...props} />} />
+					<ThemeProvider theme={theme}>
+						<GlobalStyles/>
+						<Switch>
+							<Route path="/" exact render={props => <Home {...props} />} />
+							<Route path="/test" exact render={props => <CustomHookTest {...props} />} />
 
-						<Redirect to="/" />
-					</Switch>
+							<Redirect to="/" />
+						</Switch>
+					</ThemeProvider>
 				</BrowserRouter>
 			</SWRConfig>
 		</Store>

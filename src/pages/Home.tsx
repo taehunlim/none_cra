@@ -1,7 +1,8 @@
 import React from 'react';
 import { useRootState, useRootDispatch } from '../store';
 import { increment, decrement } from '../actions/countAction';
-import Button from '../Components/atoms/Button/Button';
+import styled from '@emotion/styled';
+
 
 const Home: React.FC = () => {
 
@@ -30,13 +31,20 @@ const Home: React.FC = () => {
                 +
             </Button>
 
-            <Button
+            <button
                 onClick={handleDecrement}
             >
                 -
-            </Button>
+            </button>
         </div>
     );
 };
+
+const Button = styled.button`
+
+
+${ (props => props.theme.bg.green)}
+`;
+
 
 export default Home;

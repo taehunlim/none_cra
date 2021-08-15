@@ -14,7 +14,8 @@
   "dependencies": {
     "@emotion/core": "10.0.27",
     "@emotion/css": "10.0.27",
-    "@emotion/styled": "10.0.27",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@loadable/component": "^5.15.0",
     "@types/loadable__component": "^5.13.3",
     "@types/react": "^17.0.8",
