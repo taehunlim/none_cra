@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Checks from '../../molecules/LabelCheckList';
+import Checks from '../molecules/LabelCheckList';
 
 type UseChecksResult = [boolean, () => JSX.Element];
 

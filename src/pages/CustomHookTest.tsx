@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDarkMode } from '../Components/organisms/CustomHook/useDarkMode';
+import { useDarkMode } from '../Components/CustomHook/useDarkMode';
 import Toggle from './Toggle';
 import Content from './Content';
 

@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-interface ButtonProps {
-	style?: React.CSSProperties;
-	children?: React.ReactNode;
-	type?: "reset" | "submit";
-	onClick?: () => void;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+
 };
 
 const Button: React.FC<ButtonProps> = ({style, children, type, onClick}) => {

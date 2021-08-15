@@ -32,6 +32,7 @@
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
+    "@emotion/babel-plugin": "^11.0.0",
     "@webpack-cli/serve": "^1.4.0",
     "babel-loader": "^8.2.2",
     "babel-polyfill": "^6.26.0",

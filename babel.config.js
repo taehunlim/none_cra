@@ -5,6 +5,13 @@ module.exports = {
 	  "@babel/preset-typescript"
 	],
 	plugins : [
-	  "@babel/plugin-syntax-dynamic-import"
+	  "@babel/plugin-syntax-dynamic-import",
+	  [
+		"emotion",
+		{
+		  "autoLabel": "dev-only",
+		  "labelFormat": "[dirname]-[filename]-[local]"
+		}
+	  ]
 	]
   }

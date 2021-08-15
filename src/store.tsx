@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { rootReducer, initialState } from './reducers';
-import { useLocalStorage } from './Components/organisms/CustomHook/useLocalStorage';
+import { useLocalStorage } from './Components/CustomHook/useLocalStorage';
 
 
 const StateContext = createContext(null);
