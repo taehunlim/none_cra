@@ -2,51 +2,43 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 interface RadioButtonProps {
-	id?: string;
-	name?: string;
-	value?: any;
-	checked?: boolean;
+    checked?: boolean;
 }
 
-const Radio: React.FC<RadioButtonProps> = ({id, name, value, checked}) => {
+const Radio: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = (props) => {
 
-	return (
-		<RadioBtn>
-			<RadioCheck
-				id={id}
-				type="radio"
-				name={name}
-				value={value}
-				checked={checked}
-			/>
-		</RadioBtn>
-	);
+    return (
+        <RADIO>
+            <RadioCheck
+                {...props}
+                type="radio"
+            />
+        </RADIO>
+    );
 };
 
+const RADIO = styled.div`
+  display: flex;
+  border: 1px solid;
+  border-radius: 100%;
+  margin: 5px;
 
-
-const RadioBtn = styled.div`
-	display: flex;
-	border: 1px solid;
-	border-radius: 100%;
-	margin: 5px;
-
-	width: 16px;
-	heigth: 16px;
+  width: 16px;
+  heigth: 16px;
 `;
 
 const RadioCheck = styled.input`
-	margin: 3px;
-	appearance: none;
+  margin: 3px;
+  appearance: none;
 
-	width: 0.5rem;
-	height: 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
 
-	border-radius: 100%;
+  border-radius: 100%;
 
-	&:checked {
-		background-color: red;
-	}
+  &:checked {
+    background-color: red;
+  }
 `;
 
 export default Radio;
