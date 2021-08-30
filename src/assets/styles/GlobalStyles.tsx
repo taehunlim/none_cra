@@ -2,60 +2,60 @@ import React from 'react';
 import { Global, css } from '@emotion/react';
 
 const styles = css`
-    *,
-    *::after,
-    *::before {
-        box-sizing: border-box;
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    position: relative;
+    background-color: white;
+    transition: background-color 0.3s ease;
+
+    &.dark-mode {
+      background-color: #232323;
+      color: #dfdfdf;
     }
+  }
 
-    html,
-    body {
-        height: 100%;
-    }
+  p:last-child {
+    margin-bottom: 0;
+  }
 
-    body {
-        margin: 0;
-        position: relative
-        background-color: white;
-        transition: background-color 0.3s ease;
-        &.dark-mode {
-            background-color: #232323;
-            color: #dfdfdf;
-        }
-    }
+  a,
+  button {
+    display: inline-block;
 
-    p:last-child {
-        margin-bottom: 0;
-    }
+    cursor: pointer;
+  }
 
-    a,
-    button {
-        display: inline-block;
+  *:focus {
+    outline: none;
+  }
 
-        cursor: pointer;
-    }
+  a:focus {
+    outline: none;
+  }
 
-    *:focus {
-        outline: none;
-    }
+  ul {
+    margin: 0;
+    padding: 0;
 
-    a:focus {
-        outline: none;
-    }
-
-    ul {
-        margin: 0;
-        padding: 0;
-
-        list-style: outside none none;
-    }
+    list-style: outside none none;
+  }
 `;
-
 
 const GlobalStyles: React.FC = () => {
 
     return (
-        <Global styles={styles} />
+        <Global styles={styles}/>
     );
 };
 

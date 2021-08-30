@@ -1,16 +1,20 @@
 {
 	"compilerOptions": {
-		"target": "es6",
+		"target": "es5",
 		"module": "esnext",
 		"moduleResolution": "node",
-		"noResolve": false,
+		"resolveJsonModule": true,
+		"baseUrl": "src",
+		"isolatedModules": true,
 		"noImplicitAny": false,
 		"removeComments": false,
 		"sourceMap": true,
 		"allowJs": true,
 		"jsx": "react",
 		"allowSyntheticDefaultImports": true,
-		"keyofStringsOnly": true
+		"keyofStringsOnly": true,
+		"typeRoots": ["./src/@types", "./node_modules/@types"],
+		"declaration": true
 	},
 	"typeRoots": [
 		"node_modules/@types",

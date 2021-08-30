@@ -1,13 +1,11 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { rootReducer, initialState } from './reducers';
-import { useLocalStorage } from './Components/CustomHook/useLocalStorage';
-
 
 const StateContext = createContext(null);
 const DispatchContext = createContext(null);
 
-export const Store: React.FC = ({ children }) => {
-    
+export const Store: React.FC = ({children}) => {
+
     const [state, dispatch] = useReducer(rootReducer, initialState);
 
     return (
@@ -21,14 +19,17 @@ export const Store: React.FC = ({ children }) => {
 
 export const useRootState = () => {
     const state = useContext(StateContext);
-    if(!state) throw new Error ("Cannot find Provider")
+    if (!state) {
+        throw new Error('Cannot find Provider')
+    }
     return state;
-
 };
 
 export const useRootDispatch = () => {
     const dispatch = useContext(DispatchContext);
 
-    if(!dispatch) throw new Error ("Cannot find Provider")
+    if (!dispatch) {
+        throw new Error('Cannot find Provider')
+    }
     return dispatch;
 }

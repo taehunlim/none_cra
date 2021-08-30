@@ -2,11 +2,10 @@ import React from 'react';
 import { useRootState, useRootDispatch } from '../store';
 import { increment, decrement } from '../actions/countAction';
 
-import Layout from '../Components/Layout';
-import Button from '../Components/atoms/Button/Button';
+import Layout from '../components/Layout';
+import Button from '../components/atoms/Button/Button';
 
 const Home: React.FC = () => {
-
     const state = useRootState();
     const dispatch = useRootDispatch();
 
@@ -19,13 +18,11 @@ const Home: React.FC = () => {
         e.preventDefault();
         dispatch(decrement());
     }
-
     return (
         <Layout>
             <p>
                 {state.count.number}
             </p>
-
             <Button
                 onClick={handleIncrement}
             >

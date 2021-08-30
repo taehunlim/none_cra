@@ -9,23 +9,75 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
-
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
 const dotenv = require('dotenv');
-
 
 module.exports = (env, options) => {
 
 	const { DEV } = env;
 
-	if (DEV) {
-		dotenv.config({ path: "./env/dev.env" })
-	} else {
-		dotenv.config({ path: "./env/.env" })
-	}
+	dotenv.config(DEV ? {
+		path: "./env/dev.env"
+	} : {
+		path: "./env/.env"
+	});
 
-	// const copyMap = {
-	// 	'axios': DEV ? './node_modules/axios/dist/axios.js' : './node_modules/axios/dist/axios.min.js'
-	// }
+	const copyMap = {
+		'axios': DEV ? './node_modules/axios/dist/axios.js' : './node_modules/axios/dist/axios.min.js'
+	};
+
+	const plugins = [
+		new HtmlwebPackPlugin({
+			template: './public/index.html',
+			templateParameters: {
+				env: DEV ? '(개발)' : '',
+			},
+			minify: DEV ? false : {
+				collapseWhitespace: true,
+				removeComments: true,
+				removeRedundantAttributes: true,
+				removeScriptTypeAttributes: true,
+				removeStyleLinkTypeAttributes: true,
+				useShortDoctype: true
+			},
+
+			showErrors: true
+		}),
+
+		new WebpackManifestPlugin({
+			filename: 'manifest.json',
+			basePath: "./dist"
+		}),
+
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+			'process.env.API_URL': JSON.stringify(process.env.API_URL),
+		}),
+
+		new CopyPlugin({
+			patterns: [
+				{
+					from: copyMap['axios'],
+					to: "js/axios.min.js"
+				}
+			]
+		}),
+
+		new ErrorOverlayPlugin()
+	];
+
+	if(DEV) {
+		plugins.push(
+			new webpack.ProgressPlugin(),
+		)
+	} else {
+		plugins.push(
+			new CleanWebpackPlugin(),
+			new MiniCssExtractPlugin({
+				filename: 'css/[name].[contenthash].css'
+			}),
+		)
+	};
 
 	return {
 		mode: DEV ? "development" : "production",
@@ -35,11 +87,11 @@ module.exports = (env, options) => {
 		devServer: {
 			contentBase: "./dist",
 			historyApiFallback: true,
+
 		},
 
 		entry: {
 			main: ['babel-polyfill', "./src/index.tsx"],
-
 		},
 
 		output: {
@@ -53,7 +105,6 @@ module.exports = (env, options) => {
 		},
 
 		module: {
-
 			rules: [
 				{
 					test: /\.js$|jsx$|ts$|tsx$/,
@@ -73,7 +124,7 @@ module.exports = (env, options) => {
 				{
 					test: /\.scss$/,
 					use: [
-						DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+						MiniCssExtractPlugin.loader,
 						"css-loader",
 						"sass-loader",						
 					
@@ -110,57 +161,54 @@ module.exports = (env, options) => {
 			],
 		},
 
-		plugins: [
+		plugins,
 
-			//------------------------common
-			new HtmlwebPackPlugin({
-				template: './public/index.html',
-				templateParameters: {
-					env: DEV ? '(개발)' : '',
-				},
-				minify: DEV ? false : {
-					collapseWhitespace: true,
-					removeComments: true,
-					removeRedundantAttributes: true,
-					removeScriptTypeAttributes: true,
-					removeStyleLinkTypeAttributes: true,
-					useShortDoctype: true
-				  },
+		// plugins: [
+		// 	//------------------------common
+		// 	new HtmlwebPackPlugin({
+		// 		template: './public/index.html',
+		// 		templateParameters: {
+		// 			env: DEV ? '(개발)' : '',
+		// 		},
+		// 		minify: DEV ? false : {
+		// 			collapseWhitespace: true,
+		// 			removeComments: true,
+		// 			removeRedundantAttributes: true,
+		// 			removeScriptTypeAttributes: true,
+		// 			removeStyleLinkTypeAttributes: true,
+		// 			useShortDoctype: true
+		// 		  },
+		//
+		// 		showErrors: true
+		// 	}),
+		//
+		// 	new WebpackManifestPlugin({
+		// 		filename: 'manifest.json',
+		// 		basePath: "./dist"
+		// 	}),
+		//
+		// 	new webpack.DefinePlugin({
+		// 		'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+		// 		'process.env.API_URL': JSON.stringify(process.env.API_URL),
+		// 	}),
+		//
+		// 	new CopyPlugin({
+		// 		patterns: [
+		// 			{
+		// 				from: copyMap['axios'],
+		// 				to: "js/axios.min.js"
+		// 			}
+		// 		]
+		// 	}),
+		//
+		// 	new webpack.ProgressPlugin(),
+		// 	new CleanWebpackPlugin(),
+		// 	new MiniCssExtractPlugin({
+		// 		filename: 'css/[name].[contenthash].css'
+		// 	}),
+		//
+		// ],
 
-				showErrors: true
-			}),
-
-			new WebpackManifestPlugin({
-				filename: 'manifest.json',
-				basePath: "./dist"
-			}),
-
-			new webpack.DefinePlugin({
-				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-				'process.env.API_URL': JSON.stringify(process.env.API_URL),
-			}),
-
-			//-------------------------dev
-
-			new webpack.ProgressPlugin(),
-
-			//-------------------------prod
-
-			new CleanWebpackPlugin(),
-			new MiniCssExtractPlugin({
-				filename: 'css/[name].[contenthash].css'
-			}),
-			// new CopyPlugin({
-			// 	patterns: [
-			// 		{
-			// 			from: copyMap['axios'],
-			// 			to: "js/axios.min.js"
-			// 		}
-			// 	]
-			// })
-
-		],
-	
 		resolve: {
 			extensions: [".ts", ".tsx", ".js", ".jsx", "scss"]
 		},
@@ -186,9 +234,15 @@ module.exports = (env, options) => {
 			]
 		},
 
-		// externals: {
-		// 	axios: "axios"
-		// }
+		performance: !DEV && {
+			hints: false,
+			maxEntrypointSize: 512000,
+			maxAssetSize: 512000
+		},
+
+		externals: {
+			axios: "axios"
+		},
 	}
 
 }

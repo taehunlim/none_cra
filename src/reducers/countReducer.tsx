@@ -1,4 +1,3 @@
-
 import { INCREASE, DECREASE } from '../actions/types';
 
 interface InitialState {
@@ -15,14 +14,14 @@ type Action = {
     number: number
 }
 
-export function countReducer(state: InitialState, action:Action) {
+export function countReducer(state: InitialState, action: Action) {
     switch (action.type) {
         case INCREASE:
             return {
                 ...state,
                 number: state.number + 1
             };
-        case DECREASE: 
+        case DECREASE:
             return {
                 ...state,
                 number: state.number - 1

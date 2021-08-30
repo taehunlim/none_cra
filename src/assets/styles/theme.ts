@@ -1,10 +1,10 @@
-import { minWidth } from "../../utils/minWidth";
+import { minWidth } from '../../utils/minWidth';
 
 const deviceSize = {
-    desktop: "1280px",
-    laptop: "1024px",
-    tablet: "767px",
-    mobile: "479px",
+    desktop: '1280px',
+    laptop: '1024px',
+    tablet: '767px',
+    mobile: '479px',
 };
 
 const device = {
@@ -15,15 +15,14 @@ const device = {
 };
 
 const bgColor = {
-    light: "",
-    dark: "#232323"
+    light: '',
+    dark: '#232323'
 };
 
 const fontColor = {
-    light: "",
-    dark: "dfdfdf"
+    light: '',
+    dark: 'dfdfdf'
 };
-
 
 const theme = {
     deviceSize,
