@@ -10,6 +10,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
 const dotenv = require('dotenv');
 
 module.exports = (env, options) => {
@@ -62,13 +64,12 @@ module.exports = (env, options) => {
 				}
 			]
 		}),
-
-		new ErrorOverlayPlugin()
 	];
 
 	if(DEV) {
 		plugins.push(
-			new webpack.ProgressPlugin(),
+			new ForkTsCheckerWebpackPlugin(),
+			new ErrorOverlayPlugin(),
 		)
 	} else {
 		plugins.push(
@@ -84,10 +85,14 @@ module.exports = (env, options) => {
 
 		devtool: DEV ? "inline-source-map" : "cheap-module-source-map",
 
+		resolve: {
+			extensions: [".ts", ".tsx", ".js", ".jsx", "scss"]
+		},
+
 		devServer: {
 			contentBase: "./dist",
 			historyApiFallback: true,
-
+			port: 4000,
 		},
 
 		entry: {
@@ -107,20 +112,13 @@ module.exports = (env, options) => {
 		module: {
 			rules: [
 				{
-					test: /\.js$|jsx$|ts$|tsx$/,
-					use: [
-						'babel-loader',
-						{
-							loader: 'ts-loader',
-							// options: {
-							// 	transpileOnly: true,
-							// 	configFile: './tsconfig.json',
-							// },
-						},
-					],
-					exclude: /node_modules/
+					test: /\.tsx?$/,
+					loader: 'ts-loader',
+					exclude: /node_modules/,
+					options: {
+						transpileOnly: false
+					}
 				},
-
 				{
 					test: /\.scss$/,
 					use: [
@@ -160,61 +158,9 @@ module.exports = (env, options) => {
 				},
 			],
 		},
-
 		plugins,
 
-		// plugins: [
-		// 	//------------------------common
-		// 	new HtmlwebPackPlugin({
-		// 		template: './public/index.html',
-		// 		templateParameters: {
-		// 			env: DEV ? '(개발)' : '',
-		// 		},
-		// 		minify: DEV ? false : {
-		// 			collapseWhitespace: true,
-		// 			removeComments: true,
-		// 			removeRedundantAttributes: true,
-		// 			removeScriptTypeAttributes: true,
-		// 			removeStyleLinkTypeAttributes: true,
-		// 			useShortDoctype: true
-		// 		  },
-		//
-		// 		showErrors: true
-		// 	}),
-		//
-		// 	new WebpackManifestPlugin({
-		// 		filename: 'manifest.json',
-		// 		basePath: "./dist"
-		// 	}),
-		//
-		// 	new webpack.DefinePlugin({
-		// 		'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-		// 		'process.env.API_URL': JSON.stringify(process.env.API_URL),
-		// 	}),
-		//
-		// 	new CopyPlugin({
-		// 		patterns: [
-		// 			{
-		// 				from: copyMap['axios'],
-		// 				to: "js/axios.min.js"
-		// 			}
-		// 		]
-		// 	}),
-		//
-		// 	new webpack.ProgressPlugin(),
-		// 	new CleanWebpackPlugin(),
-		// 	new MiniCssExtractPlugin({
-		// 		filename: 'css/[name].[contenthash].css'
-		// 	}),
-		//
-		// ],
-
-		resolve: {
-			extensions: [".ts", ".tsx", ".js", ".jsx", "scss"]
-		},
-
 		optimization: {
-
 			splitChunks: {
 				name: "vendors",
 				chunks: 'all',
