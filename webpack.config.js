@@ -112,20 +112,25 @@ module.exports = (env, options) => {
 		module: {
 			rules: [
 				{
-					test: /\.tsx?$/,
-					loader: 'ts-loader',
+					test: /\.js$|jsx$|ts$|tsx$/,
+					use: [
+						'babel-loader',
+						{
+							loader: 'ts-loader',
+							options: {
+								transpileOnly: false
+							},
+						},
+					],
 					exclude: /node_modules/,
-					options: {
-						transpileOnly: false
-					}
+
 				},
 				{
 					test: /\.scss$/,
 					use: [
-						MiniCssExtractPlugin.loader,
+						DEV ? "style-loader" : MiniCssExtractPlugin.loader,
 						"css-loader",
-						"sass-loader",						
-					
+						"sass-loader",
 					],
 					exclude: /node_modules/
 				},
